@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>17.0</VCProjectVersion>
+    <Keyword>MakeFileProj</Keyword>
+    <ProjectGuid>{A6B9F0F6-7B58-4E7D-9F5E-9B8C61B2F4E2}</ProjectGuid>
+    <ProjectName>LuaJIT</ProjectName>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Makefile</ConfigurationType>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <!-- NMake commands: call LuaJIT's provided build script. -->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <NMakeBuildCommandLine>cmd /c "cd src &amp;&amp; ""$(ProjectDir)src\msvcbuild.bat"" debug"</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cmd /c "cd src &amp;&amp; ""$(ProjectDir)src\msvcbuild.bat"" clean &amp;&amp; cd src &amp;&amp; ""$(ProjectDir)src\msvcbuild.bat"" debug"</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>cmd /c ""$(ProjectDir)src\msvcbuild.bat" clean"</NMakeCleanCommandLine>
+    <NMakeOutput>$(ProjectDir)..\build\lua51.dll</NMakeOutput>
+    <NMakeIncludeSearchPath>$(ProjectDir)src;$(ProjectDir)src\jit</NMakeIncludeSearchPath>
+    <NMakePreprocessorDefinitions>_WIN32;LUAJIT;LUAJIT_ENABLE_LUA52COMPAT;%(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <OutDir>$(SolutionDir)x64\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)build\Win32\Debug\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <NMakeBuildCommandLine>cmd /c "cd src &amp;&amp; ""$(ProjectDir)src\msvcbuild.bat"""</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cmd /c "cd src &amp;&amp; ""$(ProjectDir)src\msvcbuild.bat"" clean &amp;&amp; cd src &amp;&amp; ""$(ProjectDir)src\msvcbuild.bat"""</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>cmd /c ""$(ProjectDir)src\msvcbuild.bat" clean"</NMakeCleanCommandLine>
+    <NMakeOutput>$(ProjectDir)..\build\lua51.dll</NMakeOutput>
+    <NMakeIncludeSearchPath>$(ProjectDir)src;$(ProjectDir)src\jit</NMakeIncludeSearchPath>
+    <NMakePreprocessorDefinitions>_WIN32;LUAJIT;LUAJIT_ENABLE_LUA52COMPAT;%(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <OutDir>$(SolutionDir)x64\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)build\Win32\Release\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <NMakeBuildCommandLine>cmd /c "cd src &amp;&amp; ""$(ProjectDir)src\msvcbuild.bat"" debug"</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cmd /c "cd src &amp;&amp; ""$(ProjectDir)src\msvcbuild.bat"" clean &amp;&amp; cd src &amp;&amp; ""$(ProjectDir)src\msvcbuild.bat"" debug"</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>cmd /c ""$(ProjectDir)src\msvcbuild.bat" clean"</NMakeCleanCommandLine>
+    <NMakeOutput>$(ProjectDir)..\build\lua51.dll</NMakeOutput>
+    <NMakeIncludeSearchPath>$(ProjectDir)src;$(ProjectDir)src\jit</NMakeIncludeSearchPath>
+    <NMakePreprocessorDefinitions>_WIN32;_WIN64;LUAJIT;LUAJIT_ENABLE_LUA52COMPAT;%(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <OutDir>$(SolutionDir)x64\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)build\x64\Debug\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <NMakeBuildCommandLine>cd src &amp;&amp; "$(ProjectDir)src\msvcbuild.bat" debug</NMakeBuildCommandLine>
+    <NMakeReBuildCommandLine>cd src &amp;&amp; "$(ProjectDir)src\msvcbuild.bat" clean &amp;&amp; cd src &amp;&amp; "$(ProjectDir)src\msvcbuild.bat" debug</NMakeReBuildCommandLine>
+    <NMakeCleanCommandLine>cd src &amp;&amp; "$(ProjectDir)src\msvcbuild.bat" clean</NMakeCleanCommandLine>
+    <NMakeOutput>$(ProjectDir)..\build\lua51.dll</NMakeOutput>
+    <NMakeIncludeSearchPath>$(ProjectDir)src;$(ProjectDir)src\jit</NMakeIncludeSearchPath>
+    <NMakePreprocessorDefinitions>_WIN32;_WIN64;LUAJIT;LUAJIT_ENABLE_LUA52COMPAT;%(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <OutDir>$(SolutionDir)x64\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)log\x64\Release\</IntDir>
+  </PropertyGroup>
+  <!-- Add sources/headers for IntelliSense and browsing. They are excluded from build since this is an NMake project. -->
+  <ItemGroup>
+    <ClCompile Include="src\*.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\*.h" />
+    <None Include="src\*.dasc" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+</Project>
