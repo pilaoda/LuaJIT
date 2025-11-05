@@ -84,7 +84,7 @@
     <NMakeCleanCommandLine>cd src &amp;&amp; "$(ProjectDir)src\msvcbuild.bat" clean</NMakeCleanCommandLine>
     <NMakeOutput>$(ProjectDir)..\build\lua51.dll</NMakeOutput>
     <NMakeIncludeSearchPath>$(ProjectDir)src;$(ProjectDir)src\jit</NMakeIncludeSearchPath>
-    <NMakePreprocessorDefinitions>_WIN32;_WIN64;LUAJIT;LUAJIT_ENABLE_LUA52COMPAT;%(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
+    <NMakePreprocessorDefinitions>_WIN32;_WIN64;%(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
     <OutDir>$(SolutionDir)x64\$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)log\x64\Release\</IntDir>
   </PropertyGroup>

@@ -19,8 +19,9 @@
 @popd
 @if not exist "%BUILDDIR%" mkdir "%BUILDDIR%"
 @rem Add more debug flags here, e.g. DEBUGCFLAGS=/DLUA_USE_APICHECK
+@set XCFLAGS=
 @set DEBUGCFLAGS=
-@set LJCOMPILE=cl /nologo /c /O2 /W3 /D_CRT_SECURE_NO_DEPRECATE /D_CRT_STDIO_INLINE=__declspec(dllexport)__inline
+@set LJCOMPILE=cl /nologo /c /Od /W3 /D_CRT_SECURE_NO_DEPRECATE /D_CRT_STDIO_INLINE=__declspec(dllexport)__inline
 @set LJLINK=link /nologo
 @set LJMT=mt /nologo
 @set LJLIB=lib /nologo /nodefaultlib
@@ -38,7 +39,6 @@ if /i "%1"=="force" (
 
 if not "%FORCE_REBUILD%"=="1" (
   if exist "%BUILDDIR%\lua51.dll" (
-	echo [LuaJIT] Up-to-date
     echo [LuaJIT] Up-to-date: "%BUILDDIR%\lua51.dll" skip
     goto :END
   )
@@ -99,7 +99,7 @@ if exist "%BUILDDIR%\buildvm.exe.manifest"^
 @set LJLINK=%LJLINK% /%BUILDTYPE%
 @set LJDLLNAME=%BUILDDIR%\lua51.dll
 @set LJLIBNAME=%BUILDDIR%\lua51.lib
-@set LJCOMPILE=%LJCOMPILE% /I "%BUILDDIR%" /Fo"%BUILDDIR%\\"
+@set LJCOMPILE=%LJCOMPILE% /I "%BUILDDIR%" /Fo"%BUILDDIR%\\" %XCFLAGS%
 @if "%1"=="amalg" goto :AMALGDLL
 @if "%1"=="static" goto :STATIC
 %LJCOMPILE% /MD /DLUA_BUILD_AS_DLL lj_*.c lib_*.c
