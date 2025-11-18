@@ -68,7 +68,7 @@ LUA_API int luaJIT_setmode(lua_State *L, int idx, int mode);
 typedef void (*luaJIT_profile_callback)(void *data, lua_State *L,
 					int samples, int vmstate);
 LUA_API void luaJIT_profile_start(lua_State *L, const char *mode,
-				  luaJIT_profile_callback cb, void *data);
+				  luaJIT_profile_callback cb, void *data, void* ext_ps);
 LUA_API void luaJIT_profile_stop(lua_State *L);
 LUA_API const char *luaJIT_profile_dumpstack(lua_State *L, const char *fmt,
 					     int depth, size_t *len);

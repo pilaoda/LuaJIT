@@ -88,6 +88,7 @@ typedef struct ProfileState {
 ** multiple VMs in multiple threads, but only profile one at a time.
 */
 static ProfileState profile_state;
+static ProfileState* active_ps = &profile_state;
 
 /* Default sample interval in milliseconds. */
 #define LJ_PROFILE_INTERVAL_DEFAULT	10
@@ -296,9 +297,17 @@ static void profile_timer_stop(ProfileState *ps)
 
 /* Start profiling. */
 LUA_API void luaJIT_profile_start(lua_State *L, const char *mode,
-				  luaJIT_profile_callback cb, void *data)
+				  luaJIT_profile_callback cb, void *data, void* ext_ps)
 {
-  ProfileState *ps = &profile_state;
+  ProfileState *ps;
+  if (ext_ps) {
+	  active_ps = (ProfileState*)ext_ps;
+  }
+  else {
+	  active_ps = &profile_state;
+  }
+  ps = active_ps;
+
   int interval = LJ_PROFILE_INTERVAL_DEFAULT;
   while (*mode) {
     int m = *mode++;
@@ -335,7 +344,7 @@ LUA_API void luaJIT_profile_start(lua_State *L, const char *mode,
 /* Stop profiling. */
 LUA_API void luaJIT_profile_stop(lua_State *L)
 {
-  ProfileState *ps = &profile_state;
+  ProfileState *ps = active_ps;
   global_State *g = ps->g;
   if (G(L) == g) {  /* Only stop profiler if started by this VM. */
     profile_timer_stop(ps);
@@ -355,7 +364,7 @@ LUA_API void luaJIT_profile_stop(lua_State *L)
 LUA_API const char *luaJIT_profile_dumpstack(lua_State *L, const char *fmt,
 					     int depth, size_t *len)
 {
-  ProfileState *ps = &profile_state;
+  ProfileState *ps = active_ps;
   SBuf *sb = &ps->sb;
   setsbufL(sb, L);
   lj_buf_reset(sb);

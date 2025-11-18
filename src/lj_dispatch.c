@@ -103,7 +103,7 @@ void lj_dispatch_init_hotcount(global_State *g)
 #define DISPMODE_PROF	0x40	/* Profiling active. */
 
 /* Update dispatch table depending on various flags. */
-void lj_dispatch_update(global_State *g)
+LUA_API void lj_dispatch_update(global_State *g)
 {
   uint8_t oldmode = g->dispatchmode;
   uint8_t mode = 0;
