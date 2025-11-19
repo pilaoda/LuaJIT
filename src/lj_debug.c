@@ -640,9 +640,6 @@ void lj_debug_dumpstack(lua_State* L, SBuf* sb, const char* fmt, int depth)
 						}
 						lj_buf_putmem(sb, name, (MSize)strlen(name));
 					}
-					else {
-						lj_buf_putmem(sb, "(anonymous)", 11);
-					}
 					break;
 				}
 				case 'l':  /* Dump module:line. */
